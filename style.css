@@ -1,0 +1,925 @@
+
+/* ========================================
+   CONFIGURACIÓN GENERAL
+======================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+
+    font-family: "Poppins", sans-serif;
+
+    color: white;
+
+    overflow-x: hidden;
+
+    background:
+        radial-gradient(circle at 20% 20%, #9b4dca55, transparent 30%),
+        radial-gradient(circle at 80% 70%, #6a1b9a55, transparent 30%),
+        linear-gradient(
+            135deg,
+            #16001f,
+            #31004d,
+            #4b176d,
+            #21002e
+        );
+
+    background-size: 200% 200%;
+
+    animation: backgroundMove 12s ease infinite;
+}
+
+
+/* ========================================
+   FONDO
+======================================== */
+
+@keyframes backgroundMove {
+
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+
+}
+
+
+/* ========================================
+   ESTRELLAS
+======================================== */
+
+.stars,
+.stars::before,
+.stars::after {
+
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+}
+
+.stars::before {
+
+    content: "";
+
+    background-image:
+        radial-gradient(circle, white 1px, transparent 1px),
+        radial-gradient(circle, #e8b7ff 1px, transparent 1px);
+
+    background-size:
+        70px 70px,
+        110px 110px;
+
+    opacity: 0.4;
+
+    animation: starsMove 15s linear infinite;
+
+}
+
+@keyframes starsMove {
+
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(-100px);
+    }
+
+}
+
+
+/* ========================================
+   CONTENEDOR
+======================================== */
+
+.container {
+
+    width: 100%;
+
+    max-width: 1100px;
+
+    margin: auto;
+
+    padding: 70px 25px;
+
+    position: relative;
+
+    z-index: 2;
+
+}
+
+
+/* ========================================
+   PRESENTACIÓN
+======================================== */
+
+.welcome {
+
+    text-align: center;
+
+    min-height: 90vh;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+}
+
+
+.small-title {
+
+    font-size: 18px;
+
+    color: #e5b5ff;
+
+    margin-bottom: 15px;
+
+    animation: floating 3s ease-in-out infinite;
+
+}
+
+
+h1 {
+
+    font-family: "Dancing Script", cursive;
+
+    font-size: clamp(60px, 10vw, 120px);
+
+    line-height: 1;
+
+    color: #ffffff;
+
+    text-shadow:
+        0 0 10px #c56cff,
+        0 0 30px #a83cff,
+        0 0 60px #8e24aa;
+
+    animation: titleGlow 3s ease-in-out infinite alternate;
+
+}
+
+
+h2 {
+
+    font-family: "Dancing Script", cursive;
+
+    font-size: clamp(45px, 7vw, 75px);
+
+    color: #e7b3ff;
+
+    margin-top: 15px;
+
+}
+
+
+.intro {
+
+    max-width: 600px;
+
+    margin: 25px auto;
+
+    color: #ead8f3;
+
+    font-size: 17px;
+
+    line-height: 1.8;
+
+}
+
+
+/* ========================================
+   ANIMACIÓN DEL TÍTULO
+======================================== */
+
+@keyframes titleGlow {
+
+    from {
+
+        text-shadow:
+            0 0 10px #c56cff,
+            0 0 25px #9c27b0;
+
+    }
+
+    to {
+
+        text-shadow:
+            0 0 20px #e4a7ff,
+            0 0 50px #ba68c8,
+            0 0 80px #9c27b0;
+
+    }
+
+}
+
+
+/* ========================================
+   BOTÓN
+======================================== */
+
+button {
+
+    border: none;
+
+    cursor: pointer;
+
+    font-family: "Poppins", sans-serif;
+
+}
+
+
+#surpriseButton {
+
+    margin-top: 25px;
+
+    padding: 16px 32px;
+
+    border-radius: 50px;
+
+    font-size: 16px;
+
+    font-weight: 600;
+
+    color: white;
+
+    background: linear-gradient(
+        135deg,
+        #9c27b0,
+        #e040fb
+    );
+
+    box-shadow:
+        0 0 15px #c45aff,
+        0 8px 25px #00000055;
+
+    transition: 0.3s;
+
+}
+
+
+#surpriseButton:hover {
+
+    transform: translateY(-5px) scale(1.05);
+
+    box-shadow:
+        0 0 30px #e38cff,
+        0 12px 35px #00000066;
+
+}
+
+
+/* ========================================
+   SORPRESA
+======================================== */
+
+.surprise {
+
+    display: none;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 60px;
+
+    padding-bottom: 100px;
+
+}
+
+
+.surprise.show {
+
+    display: flex;
+
+    animation: appear 1.2s ease;
+
+}
+
+
+@keyframes appear {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(50px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+
+    }
+
+}
+
+
+/* ========================================
+   TARJETA
+======================================== */
+
+.message-card {
+
+    max-width: 700px;
+
+    padding: 45px;
+
+    text-align: center;
+
+    border-radius: 30px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffffff18,
+            #ffffff08
+        );
+
+    border: 1px solid #ffffff30;
+
+    backdrop-filter: blur(15px);
+
+    box-shadow:
+        0 20px 50px #00000045;
+
+}
+
+
+.message-card .heart {
+
+    font-size: 60px;
+
+    animation: heartbeat 1.5s infinite;
+
+}
+
+
+.message-card h2 {
+
+    margin: 10px 0 20px;
+
+}
+
+
+.message-card p {
+
+    color: #eadcf2;
+
+    line-height: 1.9;
+
+    margin-bottom: 18px;
+
+}
+
+
+.message-card .special {
+
+    color: #e9a8ff;
+
+    font-weight: 600;
+
+    font-size: 18px;
+
+}
+
+
+@keyframes heartbeat {
+
+    0%, 100% {
+
+        transform: scale(1);
+
+    }
+
+    50% {
+
+        transform: scale(1.2);
+
+    }
+
+}
+
+
+/* ========================================
+   PASTEL
+======================================== */
+
+.cake-container {
+
+    text-align: center;
+
+}
+
+
+.cake {
+
+    width: 300px;
+
+    height: 250px;
+
+    position: relative;
+
+    margin: auto;
+
+}
+
+
+/* Base del pastel */
+
+.cake-bottom {
+
+    position: absolute;
+
+    bottom: 20px;
+
+    left: 20px;
+
+    width: 260px;
+
+    height: 80px;
+
+    border-radius: 20px 20px 30px 30px;
+
+    background:
+        linear-gradient(
+            #b84ee8,
+            #7020a0
+        );
+
+    box-shadow:
+        inset 0 -15px #511477,
+        0 20px 30px #00000055;
+
+}
+
+
+/* Segunda capa */
+
+.cake-middle {
+
+    position: absolute;
+
+    bottom: 80px;
+
+    left: 40px;
+
+    width: 220px;
+
+    height: 65px;
+
+    border-radius: 18px;
+
+    background:
+        linear-gradient(
+            #d57aff,
+            #9437c2
+        );
+
+}
+
+
+/* Parte superior */
+
+.cake-top {
+
+    position: absolute;
+
+    bottom: 135px;
+
+    left: 50px;
+
+    width: 200px;
+
+    height: 55px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            ellipse,
+            #f2c9ff,
+            #c65aff
+        );
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    color: #6a1b9a;
+
+    font-family: "Dancing Script", cursive;
+
+    font-size: 45px;
+
+    font-weight: bold;
+
+    box-shadow:
+        0 0 25px #d78cff;
+
+}
+
+
+/* Crema */
+
+.cream {
+
+    position: absolute;
+
+    bottom: 125px;
+
+    left: 45px;
+
+    width: 210px;
+
+    height: 35px;
+
+    border-radius: 50%;
+
+    background: #fff3ff;
+
+    z-index: 2;
+
+}
+
+
+/* ========================================
+   VELAS
+======================================== */
+
+.candles {
+
+    position: absolute;
+
+    bottom: 170px;
+
+    left: 70px;
+
+    width: 160px;
+
+    display: flex;
+
+    justify-content: space-around;
+
+    z-index: 5;
+
+}
+
+
+.candle {
+
+    width: 13px;
+
+    height: 55px;
+
+    border-radius: 5px;
+
+    background:
+        repeating-linear-gradient(
+            45deg,
+            #ffffff,
+            #ffffff 6px,
+            #c77dff 6px,
+            #c77dff 12px
+        );
+
+    position: relative;
+
+}
+
+
+.flame {
+
+    position: absolute;
+
+    width: 15px;
+
+    height: 23px;
+
+    top: -25px;
+
+    left: -1px;
+
+    border-radius: 50% 50% 50% 0;
+
+    transform: rotate(-45deg);
+
+    background: #ffd54f;
+
+    box-shadow:
+        0 0 10px #ffca28,
+        0 0 25px #ff9800;
+
+    animation: flame 0.7s infinite alternate;
+
+}
+
+
+@keyframes flame {
+
+    from {
+
+        transform:
+            rotate(-45deg)
+            scale(1);
+
+    }
+
+    to {
+
+        transform:
+            rotate(-40deg)
+            scale(1.15);
+
+    }
+
+}
+
+
+/* ========================================
+   TEXTO PASTEL
+======================================== */
+
+.cake-text {
+
+    font-family: "Dancing Script", cursive;
+
+    font-size: 32px;
+
+    color: #e7aaff;
+
+    margin-top: 20px;
+
+}
+
+
+/* ========================================
+   FLORES
+======================================== */
+
+.bouquet {
+
+    display: flex;
+
+    gap: 15px;
+
+    font-size: 65px;
+
+}
+
+
+.flower-big {
+
+    animation: flowerFloat 3s ease-in-out infinite;
+
+}
+
+
+.flower-big:nth-child(2) {
+
+    animation-delay: .3s;
+
+}
+
+
+.flower-big:nth-child(3) {
+
+    animation-delay: .6s;
+
+}
+
+
+.flower-big:nth-child(4) {
+
+    animation-delay: .9s;
+
+}
+
+
+.flower-big:nth-child(5) {
+
+    animation-delay: 1.2s;
+
+}
+
+
+@keyframes flowerFloat {
+
+    0%, 100% {
+
+        transform: translateY(0)
+        rotate(-5deg);
+
+    }
+
+    50% {
+
+        transform: translateY(-15px)
+        rotate(5deg);
+
+    }
+
+}
+
+
+/* ========================================
+   FLORES DECORATIVAS
+======================================== */
+
+.flower {
+
+    position: fixed;
+
+    font-size: 70px;
+
+    z-index: 1;
+
+    opacity: .7;
+
+    filter:
+        drop-shadow(
+            0 0 10px #c77dff
+        );
+
+    animation: floating 4s ease-in-out infinite;
+
+}
+
+
+.flower1 {
+
+    top: 5%;
+
+    left: 3%;
+
+}
+
+
+.flower2 {
+
+    top: 20%;
+
+    right: 4%;
+
+}
+
+
+.flower3 {
+
+    bottom: 10%;
+
+    left: 5%;
+
+}
+
+
+.flower4 {
+
+    bottom: 20%;
+
+    right: 5%;
+
+}
+
+
+.flower5 {
+
+    top: 50%;
+
+    left: 48%;
+
+    opacity: .15;
+
+}
+
+
+@keyframes floating {
+
+    0%, 100% {
+
+        transform: translateY(0);
+
+    }
+
+    50% {
+
+        transform: translateY(-20px);
+
+    }
+
+}
+
+
+/* ========================================
+   BOTÓN DE MÚSICA
+======================================== */
+
+.music-button {
+
+    position: fixed;
+
+    right: 25px;
+
+    bottom: 25px;
+
+    width: 55px;
+
+    height: 55px;
+
+    border-radius: 50%;
+
+    background: #9c27b0;
+
+    color: white;
+
+    font-size: 22px;
+
+    box-shadow:
+        0 0 20px #ba68c8;
+
+    z-index: 20;
+
+    transition: .3s;
+
+}
+
+
+.music-button:hover {
+
+    transform: scale(1.1);
+
+}
+
+
+/* ========================================
+   CELULARES
+======================================== */
+
+@media (max-width: 600px) {
+
+    .container {
+
+        padding: 40px 15px;
+
+    }
+
+    h1 {
+
+        font-size: 65px;
+
+    }
+
+    h2 {
+
+        font-size: 45px;
+
+    }
+
+    .message-card {
+
+        padding: 30px 20px;
+
+    }
+
+    .cake {
+
+        transform: scale(.8);
+
+    }
+
+    .bouquet {
+
+        font-size: 45px;
+
+    }
+
+    .flower {
+
+        font-size: 45px;
+
+    }
+
+}
