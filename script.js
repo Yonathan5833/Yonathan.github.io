@@ -221,3 +221,63 @@ document.addEventListener(
     }
 );
 
+/* ========================================
+   BOTÓN 🎵 → ÁLBUM DE RECUERDOS
+========================================= */
+
+const musicButton =
+    document.getElementById("musicButton");
+
+const recuerdos =
+    document.getElementById("recuerdos");
+
+
+let albumAbierto = false;
+
+
+musicButton.addEventListener("click", () => {
+
+    albumAbierto = !albumAbierto;
+
+
+    if (albumAbierto) {
+
+        recuerdos.classList.add("show");
+
+        musicButton.classList.add("album-activo");
+
+        musicButton.innerHTML = "💜";
+
+
+        setTimeout(() => {
+
+            recuerdos.scrollIntoView({
+                behavior: "smooth"
+            });
+
+        }, 200);
+
+
+    } else {
+
+        recuerdos.classList.remove("show");
+
+        musicButton.classList.remove("album-activo");
+
+        musicButton.innerHTML = "💕";
+
+
+        window.scrollTo({
+
+            top: 0,
+
+            behavior: "smooth"
+
+        });
+
+    }
+
+});
+
+
+
